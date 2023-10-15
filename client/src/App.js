@@ -1,10 +1,15 @@
+import React from "react";
+import NavBar from "./components/NavBar";
+import Login from "./components/user/Login";
 
+const App = () => {
+  return (
+    <>
+      <Login />
 
-import React from 'react';
-import NavBar from './components/NavBar';
-
-  const App = () => {
-    return <NavBar />;
-  };
+      <NavBar />
+    </>
+  );
+};
 
 export default App;

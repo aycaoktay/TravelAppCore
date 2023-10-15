@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+
+import {Close, Send} from '@mui/icons-material';
 import {
+  Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Icon,
   IconButton,
   TextField,
 } from "@mui/material";
-import { name } from "tar/lib/types";
+import { useRef, useState } from 'react';
+import { useValue } from '../../context/ContextProvider.js';
+import PasswordField from './PasswordField.js';
+
 
 const Login = () => {
   const {
@@ -17,18 +22,17 @@ const Login = () => {
   } = useValue();
   const [title, setTitle] = useState("Login");
   const [isRegister, setIsRegister] = useState(false);
-  const nameRef = useRef()
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const confirmPasswordRef = useRef()
-
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
 
   const handleClose = () => {
     dispatch({ type: "CLOSE_LOGIN" });
   };
-const handleSubmit = (e) =>{
-    e.preventDefault()
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <Dialog open={openLogin} onClose={handleClose}>
@@ -46,37 +50,46 @@ const handleSubmit = (e) =>{
           <Close />
         </IconButton>
       </DialogTitle>
-      <form onSubmit={handleSubmit}>
-        <DialogContent>
-            <DialogContentText dividers>
-                Please fill your information in the fields below
-            </DialogContentText>
-            {isRegister &&
+      <form onSubmit= {handleSubmit}>
+        <DialogContent dividers>
+          <DialogContentText >
+            Please fill your information in the fields below
+          </DialogContentText>
+          {isRegister && (
             <TextField
-            autoFocus
-            margin="normal"
-            variant="standard"
-            id="name"
-            label = 'Name'
-            type="name"
-            fullWidth
-            inputRef={nameRef}
-            inputProps={{minLength:2}}
-            required
+              autoFocus
+              margin="normal"
+              variant="standard"
+              id="name"
+              label="Name"
+              type="text"
+              fullWidth
+              inputRef={nameRef}
+              inputProps={{ minLength: 2 }}
+              required
             />
-            }
-            <TextField
+          )}
+          <TextField
             autoFocus={!isRegister}
             margin="normal"
             variant="standard"
             id="email"
-            label = 'email'
+            label="email"
             type="email"
             fullWidth
             inputRef={nameRef}
             required
-            />
-        </DialogContent>
+          />
+          <PasswordField {...{passwordRef}}/>
+            {isRegister && 
+             <PasswordField passwordRef={confirmPasswordRef} id='confirmpassword' label='Confirm Password' />
+            }
+          </DialogContent>
+          <DialogActions>
+            <Button type='submit' variant='contained' endIcon={<Send/>}>
+
+            </Button>
+          </DialogActions>
       </form>
     </Dialog>
   );
