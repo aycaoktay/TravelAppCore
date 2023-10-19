@@ -10,18 +10,17 @@ import {
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
 import Lock from "@mui/icons-material/Lock";
-import photoURL from '../profile.jpeg';
+import photoURL from "../profile.jpeg";
 import { useValue } from "../context/ContextProvider";
 import UserIcons from "./user/Usericons";
 
-const user = {name:'test', photoURL}
+const user = { name: "test", photoURL };
 
 const NavBar = () => {
-
-const {
-  state:{currentUser},
-  dispatch
-} = useValue();
+  const {
+    state: { currentUser },
+    dispatch,
+  } = useValue();
 
   return (
     <AppBar sx={{ background: "#ff9f1a" }}>
@@ -48,13 +47,17 @@ const {
           >
             YRW
           </Typography>
-          {!currentUser ? ( <Button color="inherit" startIcon={<Lock />} onClick={()=>dispatch({type:'UPDATE_USER', payload:user})}>
-            Login
-          </Button>
-          ): (
-            <UserIcons/>
+          {!currentUser ? (
+            <Button
+              color="inherit"
+              startIcon={<Lock />}
+              onClick={() => dispatch({ type: "OPEN_LOGIN" })}
+            >
+              Login
+            </Button>
+          ) : (
+            <UserIcons />
           )}
-         
         </Toolbar>
       </Container>
     </AppBar>

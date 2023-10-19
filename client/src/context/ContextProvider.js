@@ -7,6 +7,8 @@ import React, { createContext, useContext, useReducer } from 'react';
 const initalState = {
     currentUser : null,
     openLogin : false,
+    loading : false,
+    alert: {open:false , severity: 'info' , message : ''},
 }
 
 const Context = createContext(initalState)
