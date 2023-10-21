@@ -10,11 +10,11 @@ import {
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
 import Lock from "@mui/icons-material/Lock";
-import photoURL from "../profile.jpeg";
+
 import { useValue } from "../context/ContextProvider";
 import UserIcons from "./user/Usericons";
 
-const user = { name: "test", photoURL };
+
 
 const NavBar = () => {
   const {

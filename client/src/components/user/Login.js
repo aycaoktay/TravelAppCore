@@ -104,7 +104,7 @@ const Login = () => {
             label="email"
             type="email"
             fullWidth
-            inputRef={nameRef}
+            inputRef={emailRef}
             required
           />
           <PasswordField {...{ passwordRef }} />
